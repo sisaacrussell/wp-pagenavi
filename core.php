@@ -93,20 +93,20 @@ function wp_pagenavi( $args = array() ) {
 				$out .= "<span class='{$class_names['pages']}'>$pages_text</span>";
 			}
 
-			if ( $start_page >= 2 && $pages_to_show < $total_pages ) {
-				// First
-				$first_text = str_replace( '%TOTAL_PAGES%', number_format_i18n( $total_pages ), __( $options['first_text'], 'wp-pagenavi' ) );
-				$out .= $instance->get_single( 1, $first_text, array(
-					'class' => $class_names['first']
-				), '%TOTAL_PAGES%' );
-			}
-
 			// Previous
 			if ( $paged > 1 && !empty( $options['prev_text'] ) ) {
 				$out .= $instance->get_single( $paged - 1, $options['prev_text'], array(
 					'class' => $class_names['previouspostslink'],
 					'rel'   => 'prev'
 				) );
+			}
+
+			//First
+			if ( $start_page >= 2 && $pages_to_show < $total_pages ) {
+				$first_text = str_replace( '%TOTAL_PAGES%', number_format_i18n( $total_pages ), __( $options['first_text'], 'wp-pagenavi' ) );
+				$out .= $instance->get_single( 1, $first_text, array(
+					'class' => $class_names['first']
+				), '%TOTAL_PAGES%' );
 			}
 
 			if ( $start_page >= 2 && $pages_to_show < $total_pages ) {
