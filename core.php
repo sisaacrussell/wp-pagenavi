@@ -172,6 +172,13 @@ function wp_pagenavi( $args = array() ) {
 					$out .= "<span class='{$class_names['extend']}'>{$options['dotright_text']}</span>";
 			}
 
+			// Last
+			if ( $end_page < $total_pages ) {
+				$out .= $instance->get_single( $total_pages, __( $options['last_text'], 'wp-pagenavi' ), array(
+					'class' => $class_names['last'],
+				), '%TOTAL_PAGES%' );
+			}
+			
 			// Next
 			if ( $paged < $total_pages && !empty( $options['next_text'] ) ) {
 				$out .= $instance->get_single( $paged + 1, $options['next_text'], array(
@@ -180,12 +187,6 @@ function wp_pagenavi( $args = array() ) {
 				) );
 			}
 
-			if ( $end_page < $total_pages ) {
-				// Last
-				$out .= $instance->get_single( $total_pages, __( $options['last_text'], 'wp-pagenavi' ), array(
-					'class' => $class_names['last'],
-				), '%TOTAL_PAGES%' );
-			}
 			break;
 
 		// Dropdown
